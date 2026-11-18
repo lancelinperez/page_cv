@@ -3,121 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lancelin PEREZ — CV BTS SIO SISR en alternance | Le vol du fichier secret</title>
-<meta name="description" content="CV de Lancelin Perez, étudiant en BTS SIO option SISR en alternance depuis septembre 2026. Bac général NSI et Mathématiques. Expériences, formation, langues et contact.">
-<meta name="robots" content="index, follow">
+<title>Lancelin PEREZ — CV BTS SIO SISR en alternance</title>
+<meta name="description" content="CV de Lancelin Perez, étudiant en BTS SIO option SISR en alternance depuis septembre 2026 : formation, expériences, langues et profil GitHub, à découvrir via un mini-jeu de hacking.">
 <meta name="author" content="Lancelin PEREZ">
-<meta name="theme-color" content="#1b0f3a">
+<meta name="theme-color" content="#070b14">
 <meta property="og:type" content="profile">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Lancelin PEREZ — CV BTS SIO SISR">
-<meta property="og:description" content="Un CV sous forme de mini-jeu : volez le fichier secret, découvrez le profil d'un étudiant en BTS SIO SISR en alternance.">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🕵️%3C/text%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Lancelin Perez","jobTitle":"Étudiant en BTS SIO option SISR (alternance)","knowsLanguage":["fr","en","es"],"description":"Étudiant en BTS SIO option SISR, bac général spécialités NSI et Mathématiques."}</script>
-<noscript><style>#game,#skip{display:none!important}#cv{display:block!important}.t i{width:var(--w)!important}</style></noscript>
+<meta property="og:description" content="Opération Dossier Secret : pirate le serveur (pour de faux) et récupère le CV d'un étudiant en BTS SIO SISR.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
+<noscript><style>#game,.js-only{display:none!important}#cv{display:block!important}.lvl i{width:var(--w)!important}</style></noscript>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Lancelin Perez","jobTitle":"Étudiant en BTS SIO option SISR (alternance)","knowsLanguage":["fr","en","es"],"sameAs":["https://github.com/lancelinperez"]}</script>
 </head>
 <body>
-<header id="site">
+<a class="skip" href="#cv">Aller directement au CV</a>
+
+<header class="site">
+ <p class="kicker" aria-hidden="true">&gt; profil_agent.log</p>
  <h1>Lancelin PEREZ</h1>
- <p>Étudiant en BTS SIO option SISR · en alternance</p>
+ <p class="role">Étudiant en BTS SIO option SISR · en alternance</p>
+ <nav aria-label="Navigation principale">
+  <ul>
+   <li class="js-only"><a href="#game">🎮 Mission</a></li>
+   <li><a href="#cv">📁 Mon CV</a></li>
+   <li><a href="#contact">📡 Contact</a></li>
+  </ul>
+ </nav>
 </header>
-<a class="btn o" id="skip" href="#cv">⚡ Accès direct au CV</a>
+
 <main>
+<section id="game" aria-labelledby="game-t">
+ <div class="console">
+  <div class="console-bar" aria-hidden="true"><i></i><i></i><i></i><span>root@operation-dossier:~</span></div>
+  <div class="screen">
+   <h2 id="game-t" class="glitch" data-text="Opération Dossier Secret">Opération Dossier Secret</h2>
 
-<section id="game" aria-label="Mini-jeu : voler le fichier secret">
- <div id="top">
-  <svg id="hacker" viewBox="0 0 200 220" role="img" aria-label="Hacker cartoon en sweat à capuche">
-   <path d="M30 220c0-55 30-80 70-80s70 25 70 80z" fill="#6c2bd9" stroke="#111" stroke-width="6"/>
-   <path d="M85 150l15 35 15-35" fill="none" stroke="#111" stroke-width="5"/>
-   <circle cx="100" cy="85" r="62" fill="#6c2bd9" stroke="#111" stroke-width="6"/>
-   <ellipse cx="100" cy="90" rx="44" ry="40" fill="#ffd9b0" stroke="#111" stroke-width="5"/>
-   <path d="M56 80c10-30 78-30 88 0-20-14-68-14-88 0z" fill="#3c1790" stroke="#111" stroke-width="4"/>
-   <circle cx="84" cy="88" r="12" fill="#fff" stroke="#111" stroke-width="4"/><circle cx="118" cy="88" r="12" fill="#fff" stroke="#111" stroke-width="4"/>
-   <circle id="e1" cx="86" cy="90" r="5" fill="#111"/><circle id="e2" cx="120" cy="90" r="5" fill="#111"/>
-   <path id="mouth" d="M84 112q16 12 32 0" fill="none" stroke="#111" stroke-width="5" stroke-linecap="round"/>
-   <rect x="40" y="165" width="120" height="50" rx="8" fill="#19d3e6" stroke="#111" stroke-width="5"/>
-   <text x="100" y="198" text-anchor="middle" font-size="22" font-weight="900" fill="#111">&lt;/&gt;</text>
-  </svg>
-  <div id="bubble"></div>
- </div>
-
- <div class="scene on" id="s0">
-  <button class="btn pulse" id="go">🕵️ Voler le fichier</button>
- </div>
-
- <div class="scene" id="s1">
-  <div class="pc"><div class="screen">
-   <div id="log">&gt; SYSTÈME VERROUILLÉ 🔒</div>
-   <div class="bar"><i id="fill"></i></div>
-   <button class="btn c" id="hack">Pirater</button>
-  </div></div>
- </div>
-
- <div class="scene" id="s2">
-  <div class="pc"><div class="screen">
-   <div class="alarm" id="alarm"></div>
-   <button class="btn r" id="off">Désactiver l'alarme</button>
-  </div></div>
- </div>
-
- <div class="scene" id="s3">
-  <div class="pc"><div class="screen" style="color:#111;background:#fff">
-   <div style="font-family:inherit">📁 Mes documents</div>
-   <div class="files">
-    <button class="file" data-n="chat"><b>🐱</b>photos_de_chats.zip</button>
-    <button class="file" data-n="fact"><b>🧾</b>factures_ennuyeuses.pdf</button>
-    <button class="file gold" id="cvfile" data-n="cv"><b>📄</b>CV_TOP_SECRET.pdf</button>
+   <div class="hud" id="hud" hidden>
+    <p><span>Score</span> <b id="score">0</b></p>
+    <p><span>Combo</span> <b id="combo">×1</b></p>
+    <p><span>Vies</span> <b id="lives">♥♥♥</b></p>
+    <p><span>Temps</span> <b id="time">0:00</b></p>
    </div>
-  </div></div>
- </div>
 
- <div class="scene" id="s4">
-  <div class="big">FICHIER VOLÉ AVEC SUCCÈS !</div>
-  <button class="btn pulse" id="open">📂 Ouvrir le CV</button>
+   <ol class="steps" id="steps" hidden>
+    <li><span class="n">1</span> <span class="nm">Infiltration</span></li>
+    <li><span class="n">2</span> <span class="nm">Mot de passe</span></li>
+    <li><span class="n">3</span> <span class="nm">Pare-feu</span></li>
+    <li><span class="n">4</span> <span class="nm">Alarme</span></li>
+    <li><span class="n">5</span> <span class="nm">Extraction</span></li>
+   </ol>
+
+   <div class="log" id="log" aria-live="polite"></div>
+
+   <div class="stage" id="stage">
+    <p class="lead">Un fichier classé <strong>CV_TOP_SECRET</strong> dort sur un serveur ultra-protégé. Infiltre-toi, cracke le mot de passe, trompe le pare-feu, coupe l'alarme et extrais le dossier.</p>
+    <ul class="brief">
+     <li>5 épreuves, environ 2 minutes</li>
+     <li>3 vies : chaque erreur laisse une trace</li>
+     <li>Combos, bonus de temps et rang final S, A, B ou C</li>
+     <li>Jouable à la souris, au doigt ou au clavier (1 à 4, Espace)</li>
+    </ul>
+    <p class="best" id="best" hidden></p>
+    <div class="row">
+     <button class="btn primary big" type="button" id="start">▶ Lancer la mission</button>
+     <a class="btn ghost" href="#cv">Passer : voir le CV</a>
+    </div>
+   </div>
+  </div>
  </div>
 </section>
 
-<article id="cv" aria-label="Curriculum vitae de Lancelin Perez">
-<div class="sheet">
- <section id="presentation"><h2>👤 Présentation</h2>
-  <p>Bac général (spécialités NSI et Mathématiques), actuellement en <strong>BTS SIO option SISR</strong>. Alternance depuis septembre 2026.</p></section>
-
- <section id="langues"><h2>🗣️ Langues</h2><div class="cards">
-  <div class="card"><h3>Français</h3><h4>Langue maternelle</h4><div class="t" aria-hidden="true"><i data-w="100" style="--w:100%"></i></div></div>
-  <div class="card"><h3>Anglais</h3><h4>Niveau scolaire</h4><div class="t" aria-hidden="true"><i data-w="50" style="--w:50%"></i></div></div>
-  <div class="card"><h3>Espagnol</h3><h4>Niveau scolaire</h4><div class="t" aria-hidden="true"><i data-w="50" style="--w:50%"></i></div></div>
- </div></section>
-
- <section id="experiences"><h2>🎯 Expériences professionnelles</h2><div class="cards">
-  <article class="card"><h3>Alternance — BTS SIO SISR</h3><h4><time datetime="2026-09">Depuis septembre 2026</time></h4><h5>Missions</h5>
-   <ul><li>Réalisation de tâches en rapport avec mon BTS SIO SISR</li></ul></article>
-  <article class="card"><h3>Badges à gogo</h3><h4><time datetime="2023">2023</time> – <time datetime="2025">2025</time></h4><h5>Missions</h5>
-   <ul><li>Réalisation de maquettes graphiques pour des badges personnalisés</li><li>Découpe et presse de badges</li></ul></article>
-  <article class="card"><h3>Renault</h3><h4>Stage de seconde</h4><h5>Missions</h5>
-   <ul><li>Découverte du monde de l'entreprise</li><li>Formation sur la sécurité au travail</li><li>Découverte de différents métiers</li></ul></article>
-  <article class="card"><h3>Mairie de Saint-Christo-en-Jarez</h3><h4>Stage de 3ème</h4><h5>Missions</h5>
-   <ul><li>Découverte du fonctionnement d'une mairie et de ses différents services</li></ul></article>
- </div></section>
-
- <section id="formation"><h2>🎓 Formation</h2><div class="cards">
-  <article class="card"><h3>BTS SIO</h3><h4>Option SISR</h4><h5>En alternance depuis septembre 2026</h5></article>
-  <article class="card"><h3>Baccalauréat général</h3><h4>Spécialités NSI et Mathématiques</h4></article>
- </div></section>
-
- <section id="contact"><h2>📡 Contact</h2>
-  <address class="card"><h3>Me contacter</h3><ul>
-   <li>✉️ <a href="mailto:lCENSURER@gmail.com">lCENSURER@gmail.com</a></li>
-   <li>📞 <a href="tel:0102030405">0102030405</a></li>
-   <li>📍 CENSURER</li></ul>
-   <p><a class="gh" href="https://github.com/lancelinperez">Voir mon profil GitHub</a></p></address></section>
-
- <div class="actions"><button class="btn c" onclick="window.print()">🖨️ Imprimer / Enregistrer en PDF</button><button class="btn o" onclick="try{history.replaceState(null,'',location.pathname)}catch(e){}location.reload()">🔁 Rejouer</button></div>
+<div id="jail" class="overlay" role="alertdialog" aria-modal="true" aria-labelledby="jail-t" aria-describedby="jail-d" hidden>
+ <svg viewBox="0 0 200 220" role="img" aria-label="Le hacker derrière les barreaux d'une prison">
+  <rect width="200" height="220" fill="#141c2e"/>
+  <path d="M30 220c0-55 30-80 70-80s70 25 70 80z" fill="#ff8a1f" stroke="#05070d" stroke-width="5"/>
+  <circle cx="100" cy="85" r="52" fill="#ffd9b0" stroke="#05070d" stroke-width="5"/>
+  <path d="M58 70c12-34 72-34 84 0-22-12-62-12-84 0z" fill="#222a3d" stroke="#05070d" stroke-width="4"/>
+  <circle cx="82" cy="86" r="8" fill="#fff" stroke="#05070d" stroke-width="3"/><circle cx="118" cy="86" r="8" fill="#fff" stroke="#05070d" stroke-width="3"/>
+  <circle cx="82" cy="89" r="3" fill="#05070d"/><circle cx="118" cy="89" r="3" fill="#05070d"/>
+  <path d="M82 118q18-14 36 0" fill="none" stroke="#05070d" stroke-width="5" stroke-linecap="round"/>
+  <g fill="#9fb3d1" stroke="#05070d" stroke-width="2"><rect x="18" width="10" height="220"/><rect x="56" width="10" height="220"/><rect x="94" width="10" height="220"/><rect x="132" width="10" height="220"/><rect x="170" width="10" height="220"/></g>
+ </svg>
+ <p class="overlay-t" id="jail-t">Repéré : arrêté !</p>
+ <p id="jail-d">Trop de traces laissées sur le serveur. Score final : <b id="jail-score">0</b> pts.</p>
+ <div class="row"><button class="btn primary" type="button" id="retry">↻ Retenter la mission</button><button class="btn ghost" type="button" id="cvjail">Voir le CV quand même</button></div>
 </div>
+
+<article id="cv" aria-label="Curriculum vitae de Lancelin Perez" tabindex="-1">
+ <div class="dossier">
+  <p class="folder-tab" aria-hidden="true">Dossier n° SIO-2026</p>
+  <p class="stamp" aria-hidden="true">Déclassifié</p>
+
+  <dl class="ident">
+   <div><dt>Agent</dt><dd>Lancelin PEREZ</dd></div>
+   <div><dt>Formation</dt><dd>BTS SIO, option SISR</dd></div>
+   <div><dt>Statut</dt><dd>En alternance depuis septembre 2026</dd></div>
+   <div><dt>Langues</dt><dd>Français, anglais, espagnol</dd></div>
+  </dl>
+
+  <section id="presentation"><h2>Présentation</h2>
+   <p>Titulaire d'un bac général (spécialités NSI et Mathématiques), je suis actuellement en <strong>BTS SIO option SISR</strong> (solutions d'infrastructure, systèmes et réseaux), en alternance depuis septembre 2026.</p>
+  </section>
+
+  <section id="experiences"><h2>Expériences professionnelles</h2>
+   <div class="cards">
+    <article class="card"><h3>Alternance — BTS SIO SISR</h3><p class="sub"><time datetime="2026-09">Depuis septembre 2026</time></p><h4>Missions</h4>
+     <ul><li>Réalisation de tâches en rapport avec mon BTS SIO SISR</li></ul></article>
+    <article class="card"><h3>Badges à gogo</h3><p class="sub"><time datetime="2023">2023</time> – <time datetime="2025">2025</time></p><h4>Missions</h4>
+     <ul><li>Réalisation de maquettes graphiques pour des badges personnalisés</li><li>Découpe et presse de badges</li></ul></article>
+    <article class="card"><h3>Renault</h3><p class="sub">Stage de seconde</p><h4>Missions</h4>
+     <ul><li>Découverte du monde de l'entreprise</li><li>Formation sur la sécurité au travail</li><li>Découverte de différents métiers</li></ul></article>
+    <article class="card"><h3>Mairie de Saint-Christo-en-Jarez</h3><p class="sub">Stage de 3ème</p><h4>Missions</h4>
+     <ul><li>Découverte du fonctionnement d'une mairie et de ses différents services</li></ul></article>
+   </div>
+  </section>
+
+  <section id="formation"><h2>Formation</h2>
+   <div class="cards">
+    <article class="card"><h3>BTS SIO</h3><p class="sub">Option SISR</p><p>En alternance depuis septembre 2026</p></article>
+    <article class="card"><h3>Baccalauréat général</h3><p class="sub">Spécialités NSI et Mathématiques</p></article>
+   </div>
+  </section>
+
+  <section id="langues"><h2>Langues</h2>
+   <div class="cards">
+    <div class="card"><h3>Français</h3><p class="sub">Langue maternelle</p><div class="lvl" aria-hidden="true"><i data-w="100" style="--w:100%"></i></div></div>
+    <div class="card"><h3>Anglais</h3><p class="sub">Niveau scolaire</p><div class="lvl" aria-hidden="true"><i data-w="50" style="--w:50%"></i></div></div>
+    <div class="card"><h3>Espagnol</h3><p class="sub">Niveau scolaire</p><div class="lvl" aria-hidden="true"><i data-w="50" style="--w:50%"></i></div></div>
+   </div>
+  </section>
+
+  <section id="contact"><h2>Contact</h2>
+   <div class="card contact"><h3>Me contacter</h3>
+    <p>Retrouvez mes projets et contactez-moi via GitHub :</p>
+    <address><a class="gh" href="https://github.com/lancelinperez">Voir mon profil GitHub</a></address>
+   </div>
+  </section>
+
+  <div class="row actions">
+   <button class="btn ink" type="button" id="print">🖨️ Imprimer / PDF</button>
+   <button class="btn ink-ghost js-only" type="button" id="replay">↻ Rejouer la mission</button>
+  </div>
+ </div>
 </article>
 </main>
-<footer><h6>CV de Lancelin PEREZ — BTS SIO SISR</h6><p>Toutes les actions de « hacking » du jeu sont fictives et simulées dans le navigateur.</p></footer>
+
+<footer class="site-foot">
+ <p><strong>CV de Lancelin PEREZ</strong> — BTS SIO SISR</p>
+ <p>Toutes les actions de « hacking » du jeu sont fictives et simulées dans le navigateur.</p>
+</footer>
 
 <script src="js/app.js" defer></script>
 </body>
