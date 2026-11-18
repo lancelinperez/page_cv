@@ -13,7 +13,6 @@ const S = { run: 0, score: 0, combo: 1, lives: 3, step: 0, t0: 0, timer: null };
 /* ---------- Outils ---------- */
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const rand = (a, b) => Math.random() * (b - a) + a;
-const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const fmt = s => Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
 
 function h(tag, props = {}, ...kids) {
@@ -89,7 +88,7 @@ function mistake() {
 function pick(question, opts, cls = "choice") {
   return new Promise(res => {
     const list = h("div", { class: cls === "file" ? "files" : "choices" });
-    shuffle(opts).forEach((o, i) => list.append(
+    opts.forEach((o, i) => list.append( // ordre fixe : les réponses restent toujours au même endroit
       h("button", { class: cls, type: "button", "data-key": String(i + 1), onclick: () => { list.querySelectorAll("button").forEach(b => { b.disabled = true; }); res(o); } },
         h("kbd", { text: String(i + 1) }),
         h("span", { class: "fname", text: o.c }),
@@ -101,8 +100,8 @@ function pick(question, opts, cls = "choice") {
 async function stInfiltration(my) {
   await log("> Cible : srv-dossier.local — épreuve 1 : s'infiltrer.", "sys");
   const opts = [
-    { c: "ssh agent@srv-dossier", ok: true },
     { c: "ping google.fr", msg: "Le ping répond… mais Google n'est pas notre cible." },
+    { c: "ssh agent@srv-dossier", ok: true },
     { c: "rm -rf /", msg: "Commande bloquée : trop radical, agent !" },
     { c: "sudo make me-a-sandwich", msg: "Permission refusée. Et pas de sandwich." }
   ];
@@ -121,9 +120,9 @@ async function stCrack(my) {
   await log("> Épreuve 2 : cracker le mot de passe root.", "sys");
   return new Promise(res => {
     const parts = ["5I5", "R-2", "026"];
-    const widths = [24, 17, 11];
-    const speeds = reduce ? [40, 50, 60] : [70, 95, 125]; // % de la barre par seconde
-    let hits = 0, pos = 0, dir = 1, zl = 0, last = performance.now(), raf = 0;
+    const widths = [38, 32, 26];                          // zones larges = plus facile
+    const speeds = reduce ? [25, 30, 35] : [32, 40, 48];  // % de la barre par seconde (lent)
+    let hits = 0, pos = 0, raw = 0, dir = 1, zl = 0, last = performance.now(), raf = 0;
 
     const pwd = h("p", { class: "pwd", "aria-live": "polite" });
     const zone = h("div", { class: "zone" }, h("i"));
@@ -132,15 +131,16 @@ async function stCrack(my) {
     const setZone = () => { const w = widths[hits]; zl = rand(4, 96 - w); zone.style.left = zl + "%"; zone.style.width = w + "%"; };
     const showPwd = () => { pwd.textContent = "Mot de passe : " + parts.map((p, i) => i < hits ? p : "•••").join(""); };
     setZone(); showPwd();
-    panel(h("p", { class: "q", text: "Appuie quand le curseur rose est dans la zone verte (3 fois). Plus tu vises le centre, plus tu marques." }),
+    panel(h("p", { class: "q", text: "Appuie quand le curseur rose est dans la zone verte (3 fois). Pas de stress : rater ne coûte pas de vie." }),
       pwd, h("div", { class: "track", "aria-hidden": "true" }, zone, cursor), btn);
     focusFirst();
 
     const loop = now => {
       if (my !== S.run) return;
       const dt = Math.min((now - last) / 1000, .05); last = now;
-      pos += dir * speeds[hits] * dt;
-      if (pos >= 100) { pos = 100; dir = -1; } else if (pos <= 0) { pos = 0; dir = 1; }
+      raw += dir * speeds[hits] * dt;
+      if (raw >= 100) { raw = 100; dir = -1; } else if (raw <= 0) { raw = 0; dir = 1; }
+      pos = Math.round(raw / 2) * 2; // déplacement « pixel » par pas de 2 %
       cursor.style.left = pos + "%";
       raf = requestAnimationFrame(loop);
     };
@@ -163,8 +163,9 @@ async function stCrack(my) {
           log("Fragment " + hits + "/3 craqué" + (perfect ? " — tir parfait !" : "."), "ok");
         }
       } else {
-        log("Raté : mauvais hash, le serveur note ta tentative.", "err");
-        if (!mistake()) { cancelAnimationFrame(raf); res(false); }
+        // Épreuve d'entraînement : un raté casse seulement le combo, sans perdre de vie
+        S.combo = 1; renderHud(); popText("RATÉ", true);
+        log("Raté ! Réessaie, tu as tout ton temps.", "err");
       }
     });
   });
